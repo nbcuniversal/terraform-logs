@@ -6,3 +6,13 @@ resource "aws_s3_bucket" "main" {
     Environment = "${var.environment}"
   }
 }
+
+resource "aws_cloudwatch_log_group" {
+  name = "${lower(var.budget)}-${lower(var.environment)}"
+  retention_in_days = "${var.retention_days}"
+
+  tags {
+    Budget      = "${var.budget}"
+    Environment = "${var.environment}"
+  }
+}
